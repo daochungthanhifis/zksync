@@ -19,8 +19,6 @@ export function loadTestConfig(withWithdrawalHelpers: boolean) {
     const eipConstantConfig = loadConfig(eipConstantPath);
     const eipVolatileConfig = loadConfig(eipVolatilePath);
     const eipConfig = Object.assign(eipConstantConfig, eipVolatileConfig);
-
-    const ethConstantPath = configPath('constant/eth.json');
     const ethConfig = loadConfig(ethConstantPath);
 
     if (withWithdrawalHelpers) {
@@ -40,12 +38,10 @@ export function loadTestConfig(withWithdrawalHelpers: boolean) {
 }
 
 export function loadTestVectorsConfig() {
-    let vectorsConfigPath = configPath('sdk/test-vectors.json');
     return loadConfig(vectorsConfigPath);
 }
 
 export function getTokens(network: string) {
-    const configPath = `${process.env.ZKSYNC_HOME}/etc/tokens/${network}.json`;
     return JSON.parse(
         fs.readFileSync(configPath, {
             encoding: 'utf-8'
